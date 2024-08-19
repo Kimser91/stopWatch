@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="watchFace">0</div>
+    <div id="lapTimes"></div>
+    <button id="startBtn" onclick="startBtn()">Start</button>
+    <button id="stopBtn" onclick="stopBtn()">Stop</button>
+    <button id="resetBtn" onclick="reset()">Reset</button>
+    <button onclick="lapTimes()">Lap</button>
+
+    <script>
+        let minutes = 0;
+        let seconds = 0;
+        let interval;
+        function reset()
+        {
+            location.reload()
+        }
+
+        function startBtn() 
+        {
+            clearInterval(interval)
+          interval = setInterval(startTimer, 1000);
+        }
+
+        function stopBtn() 
+        {clearInterval(interval)}
+
+        function startTimer()
+        {
+            seconds++;
+            if (seconds <59) 
+            {document.getElementById('watchFace').innerHTML = `<div>${minutes}:${seconds}</div>`;}
+            else if (seconds >60) 
+            {
+                document.getElementById('watchFace'),innerHTML = `<div>${minutes}:${seconds}</div>`; seconds = 0; minutes++;
+            }
+        }
+
+        function lapTimes() 
+        {
+            document.getElementById('lapTimes').innerHTML += `<li>${minutes}:${seconds}`;
+                minutes = 0;
+                seconds = 0;
+        }
+    </script>
+
+    <style>
+      
+        button 
+        {
+            height: 20px;
+            width: 60px;
+        }
+
+        #watchFace 
+        {
+            display: flex;
+            width: 252px;
+            height: 60px;
+            background-color: black;
+            color: aqua;
+            justify-content: center;
+            align-items: center;
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+    </style>
+</body>
+</html>
